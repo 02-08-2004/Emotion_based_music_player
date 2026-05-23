@@ -1,0 +1,2 @@
+pygame==2.1.3
+# If you prefer playsound instead, replace or add: playsound==1.3.0
