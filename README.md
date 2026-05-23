@@ -1,56 +1,73 @@
-# Emotion-based Music Player (minimal)
+# Emotion-Based Music Player
 
-This repository contains a minimal structure and a small `main.py` to demonstrate an emotion-based music player layout.
+A Streamlit web application that detects emotions from uploaded images and plays corresponding mood-based music.
 
-Structure created:
+## Features
 
-- `main.py` — simple CLI to list and play songs
-- `songs/happy/happy1.mp3`, `songs/happy/happy2.mp3`
-- `songs/sad/sad1.mp3`
-- `songs/angry/angry1.mp3`
-- `songs/neutral/neutral1.mp3`
-- `songs/surprised/surprise1.mp3`
+- 📸 **Face Emotion Detection**: Uses FER (Facial Expression Recognition) with MTCNN for accurate emotion detection
+- 🎵 **Music Playback**: Plays music based on detected emotions (happy, sad, angry, neutral, surprised)
+- 🎨 **Web Interface**: Built with Streamlit for an intuitive user experience
+- 🔐 **Privacy-Focused**: Analyzes images locally without storing data
 
-Usage
+## Project Structure
 
-1. (Optional) Create a virtual environment and install requirements:
-
-```powershell
-python -m venv .venv; .\.venv\Scripts\Activate.ps1; pip install -r requirements.txt
+```
+.
+├── main.py                 # Streamlit web application
+├── generate_samples.py     # Script to generate demo WAV samples
+├── requirements.txt        # Python dependencies
+├── README.md              # This file
+└── songs/
+    ├── happy/             # Happy mood songs
+    ├── sad/               # Sad mood songs
+    ├── angry/             # Angry mood songs
+    ├── neutral/           # Neutral mood songs
+    └── surprised/         # Surprised mood songs
 ```
 
-2. List available emotions:
+## Installation
+
+1. **Install dependencies**:
 
 ```powershell
-python main.py --list
+pip install -r requirements.txt
 ```
 
-3. Play a random song from an emotion:
+Or install manually:
 
 ```powershell
-python main.py --emotion happy
+pip install streamlit fer opencv-python-headless numpy pillow pygame
 ```
 
-4. Let the app pick a random emotion and play from it:
-
-```powershell
-python main.py --pick
-```
-
-5. Launch the simple GUI (Tkinter):
-
-```powershell
-python main.py --gui
-```
-
-Notes
-
-- The repo includes placeholder MP3 files (text placeholders). Replace them with real MP3 files you have rights to.
- - Playback uses `pygame`. Install dependencies with `pip install -r requirements.txt`.
- - Generate short demo WAV samples (sine tones) into each `songs/<emotion>/` folder by running:
+2. **(Optional) Generate demo audio samples**:
 
 ```powershell
 python generate_samples.py
 ```
 
-	This creates small WAV files for demo/testing; you should replace them with real CC-licensed audio you have rights to if needed.
+This creates sine wave WAV files for testing. Replace with real CC-licensed audio for production use.
+
+## Usage
+
+Launch the Streamlit app:
+
+```powershell
+python -m streamlit run main.py
+```
+
+The app will open in your browser at `http://localhost:8502`
+
+### How to Use
+
+1. Upload a clear face image (JPG, JPEG, or PNG)
+2. Check the permission box in the sidebar
+3. Click **Detect Emotion & Play Song 🎵**
+4. The app detects your emotion and plays a corresponding song
+
+## Notes
+
+- **Supported Emotions**: Happy, Sad, Angry, Neutral, Surprised
+- **Image Requirements**: Clear front-facing face for best results
+- **Audio Files**: The `songs/` folders contain demo MP3 and WAV files. For production, replace with real CC-licensed audio you have rights to
+- **Fallback**: If emotion detection fails or an emotion is not recognized, the app falls back to "neutral" music
+- **Privacy**: Images are analyzed locally and not stored or transmitted
